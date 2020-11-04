@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  jenkins:
+    image: jenkins/jenkins
+    container_name: jenkinslts
+    ports:
+      - 8085:8080
+      - 50000:50000
+    volumes:
+      - /home/Tropic/jenkins/volume:/var/jenkins_home
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    ports:
+      - 8083:8083
+      - 8086:8086
+      - 8090:8090
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - 3000:3000
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017

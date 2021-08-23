@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      # Bind cwd to prometheus config folder
+      - ./conf:/etc/prometheus
+      - prometheus-data:/prometheus
+
+  prometheus-pushgateway:
+    image: prom/pushgateway
+    ports:
+      - "9091:9091"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3030:3000
+
+volumes:
+  prometheus-data:
